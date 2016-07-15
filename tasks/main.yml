@@ -1,0 +1,27 @@
+---
+# tasks file for ansible-role-phantomjs
+
+- name: Install PhantomJS
+  become: yes
+  script: "files/install_phantomjs.sh {{ phantomjs_version }}"
+  args:
+    creates: /usr/local/share/phantomjs-{{ phantomjs_version }}-linux-x86_64/bin/phantomjs
+
+- name: Check PhantomJS path
+  shell: "which phantomjs"
+  register: phantomjs_bin
+  changed_when: false
+  always_run: yes
+  tags: debug
+
+- name: Check PhantomJS version
+  shell: "phantomjs --version"
+  register: phantomjs_result
+  changed_when: false
+  always_run: yes
+  tags: debug
+
+- debug: msg="PhantomJS binary{{':'}} {{ phantomjs_bin.stdout }}"
+  tags: debug
+- debug: msg="PhantomJS version{{':'}} {{ phantomjs_result.stdout }}"
+  tags: debug
