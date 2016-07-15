@@ -1,7 +1,7 @@
 ansible-role-phantomjs
 =========
 
-This role installs the latest version of the PhantomJS package from GitHub.
+This role installs the latest version of the PhantomJS package from the Bitbucket repository.
 
 Requirements
 ------------
