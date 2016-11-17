@@ -11,14 +11,14 @@
   shell: "which phantomjs"
   register: phantomjs_bin
   changed_when: false
-  always_run: yes
+  check_mode: no
   tags: debug
 
 - name: Check PhantomJS version
   shell: "phantomjs --version"
   register: phantomjs_result
   changed_when: false
-  always_run: yes
+  check_mode: no
   tags: debug
 
 - debug: msg="PhantomJS binary{{':'}} {{ phantomjs_bin.stdout }}"
