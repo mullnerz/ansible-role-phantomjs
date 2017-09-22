@@ -1,3 +1,5 @@
 ---
 # defaults file for ansible-role-phantomjs
 phantomjs_version: 1.9.8
+
+offline_install: false
