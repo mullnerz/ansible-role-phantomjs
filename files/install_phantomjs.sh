@@ -39,12 +39,12 @@ if [ -f /etc/lsb-release ]; then
     sudo apt-get install libfontconfig1 libfontconfig1-dev -y
 fi
 
-cd ~
+cd /tmp
 if ! [ "$OFFLINE" = "--offline" ]; then
     wget "https://bitbucket.org/ariya/phantomjs/downloads/${PHANTOM_JS}.tar.bz2"
 fi
-sudo tar xvjf "${PHANTOM_JS}.tar.bz2"
+sudo tar xvjf "/tmp/${PHANTOM_JS}.tar.bz2"
 
-sudo cp -a "$PHANTOM_JS" /usr/local/share/ && sudo rm -r "$PHANTOM_JS"
+sudo cp -a "/tmp/$PHANTOM_JS" /usr/local/share/ && sudo rm -r "/tmp/$PHANTOM_JS"
 sudo ln -sf "/usr/local/share/${PHANTOM_JS}/bin/phantomjs" /usr/local/bin
 sudo ln -sf /usr/local/bin/phantomjs /usr/bin/phantomjs
