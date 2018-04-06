@@ -28,23 +28,24 @@ PHANTOM_JS="$PHANTOM_VERSION-linux-$ARCH"
 #if [[ $DISTRIBUTION == "Ubuntu" ]]
 
 if [ -f /etc/redhat-release ]; then
-    yum install freetype freetype-devel -y
-    yum install fontconfig fontconfig-devel -y
+    yum install -y  freetype freetype-devel \
+                    fontconfig fontconfig-devel
 fi
 
 if [ -f /etc/lsb-release ]; then
-    sudo apt-get update
-    sudo apt-get install build-essential chrpath libssl-dev libxft-dev -y
-    sudo apt-get install libfreetype6 libfreetype6-dev -y
-    sudo apt-get install libfontconfig1 libfontconfig1-dev -y
+    apt-get -qq update
+    apt-get install -qq -y  build-essential chrpath libssl-dev libxft-dev \
+                            libfreetype6 libfreetype6-dev \
+                            libfontconfig1 libfontconfig1-dev
 fi
 
 cd /tmp
 if ! [ "$OFFLINE" = "--offline" ]; then
     wget "https://bitbucket.org/ariya/phantomjs/downloads/${PHANTOM_JS}.tar.bz2"
 fi
+
+cd /usr/local/share/
 sudo tar xvjf "/tmp/${PHANTOM_JS}.tar.bz2"
 
-sudo cp -a "/tmp/$PHANTOM_JS" /usr/local/share/ && sudo rm -r "/tmp/$PHANTOM_JS"
 sudo ln -sf "/usr/local/share/${PHANTOM_JS}/bin/phantomjs" /usr/local/bin
 sudo ln -sf /usr/local/bin/phantomjs /usr/bin/phantomjs
